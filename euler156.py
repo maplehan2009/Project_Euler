@@ -16,11 +16,8 @@ def change2b(x, b):
         x /= b
     return x_new
 
-def d_number(x, d):
-    '''x is a string based on b. d is the number that we search for. Return the number of d in the string x'''
-    return x.count(d)
-
 def b2ten(x, b):
+	'''x is a number based on b. Change x to the number based on 10'''
     length = len(x)
     s = 0
     if length > 0:
@@ -29,6 +26,7 @@ def b2ten(x, b):
     return s
 
 def f(n, d, b):
+	'''Calculate the f(n) value'''
     if n == 0:
         return 0
     
@@ -53,6 +51,7 @@ def f(n, d, b):
     return count
     
 def binary_search(left, right, d, b):
+	'''The binary search method to find all the roots in a certain range'''
     s = 0
     if right - left == 0:
         if f(left, d, b) == left:
@@ -85,55 +84,8 @@ def binary_search(left, right, d, b):
     
     return s
 
-def find_root(d, b):
-    N = 100
-    root = []
-    for n in range(N+1):
-        if f(n, d, b) == n:
-            root = root + [n]
-    return root
-    
-def find_root_quick(d, b):
-    N = b ** (b ** 2) - 1
-    root = []
-    f = 0
-    n = 1
-    while(n <= N):
-        f += d_number(change2b(n, b), str(d))
-        if f == n:
-            root = root + [n]
-        n += 1
-        
-    return root
-
-def find_root_superquick(d, b):
-    N = b ** (b ** 2)
-    f_node = [x * b ** (x-1) for x in range(1, b ** 2 + 1)]
-    n_node = [b ** x - 1 for x in range(1, b ** 2 + 1)]
-    root = []
-    f = 0
-    n = 1
-    node = 0
-    count = 0
-    while(n <= N and node < b ** 2):
-        count += 1
-        f += d_number(change2b(n, b), str(d))
-        if f == n:
-            root = root + [n]
-        if n < f_node[node] and n < n_node[node]:
-            n += 1
-        else:
-            n = n_node[node] + 1
-            f = f_node[node]
-            node += 1
-    print 'count is ' + str(count)
-    return root
-
-def s(d, b):
-    root = find_root_superquick(d, b)
-    return sum(root)
-
 def read_input():
+	'''read a local test file'''
     file = open('input', 'rb')
     b, _ = file.readline().split(' ')
     b = int(b)
@@ -142,6 +94,7 @@ def read_input():
     return d_int, b
 
 def read_input_web():
+	'''read the on-line test file provided by Hackranker'''
     b,M = raw_input().strip().split(' ')
     b,M = [int(b),int(M)]
     arr = map(int,raw_input().strip().split(' '))
