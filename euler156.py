@@ -5,7 +5,6 @@ Created on Wed Oct  5 23:09:43 2016
 
 @author: jingtao
 """
-import sys
 
 def change2b(x, b):
     '''x is a 10 based number, b is a new base. Change x based on b'''
@@ -17,7 +16,7 @@ def change2b(x, b):
     return x_new
 
 def b2ten(x, b):
-	'''x is a number based on b. Change x to the number based on 10'''
+    '''x is a number based on b. Change x to the number based on 10'''
     length = len(x)
     s = 0
     if length > 0:
@@ -26,7 +25,7 @@ def b2ten(x, b):
     return s
 
 def f(n, d, b):
-	'''Calculate the f(n) value'''
+    '''Calculate the f(n) value'''
     if n == 0:
         return 0
     
@@ -51,7 +50,7 @@ def f(n, d, b):
     return count
     
 def binary_search(left, right, d, b):
-	'''The binary search method to find all the roots in a certain range'''
+    '''The binary search method to find all the roots in a certain range'''
     s = 0
     if right - left == 0:
         if f(left, d, b) == left:
@@ -85,7 +84,7 @@ def binary_search(left, right, d, b):
     return s
 
 def read_input():
-	'''read a local test file'''
+    '''read a local test file'''
     file = open('input', 'rb')
     b, _ = file.readline().split(' ')
     b = int(b)
@@ -94,7 +93,7 @@ def read_input():
     return d_int, b
 
 def read_input_web():
-	'''read the on-line test file provided by Hackranker'''
+    '''read the on-line test file provided by Hackranker'''
     b,M = raw_input().strip().split(' ')
     b,M = [int(b),int(M)]
     arr = map(int,raw_input().strip().split(' '))
